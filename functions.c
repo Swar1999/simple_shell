@@ -41,25 +41,6 @@ char *_strcpy(char *dest, char *src)
 		return (dest);
 }
 /**
- * execute - function to search for path of a command
- * @read_line : string
- * @head : struct
- * Return: nothing
- */
-void execute(char *read_line, char **artoken)
-{
-	pid_t id;/*id of process*/
-		id = fork();/*call the process again*/
-		if (id == 0)
-		{
-			execve(read_line, artoken, NULL);/*search for path name*/
-		}
-		else
-		{
-			wait(NULL);/*wait for proccess complition*/
-		}
-}
-/**
  * _strlen - Entry point
  * Description: program that print the string length
  * @s: pointer

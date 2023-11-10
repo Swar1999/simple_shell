@@ -5,16 +5,16 @@
  * @argv: arguments vector
  * Return: always 0 success
  */
-int main(void)
+int main(int argc, char **argv)
 {
 	char *prompt = "$ ";/*creat new prompt */
 	char *read_line = NULL, *copy_line = NULL;/*getline function paramter*/
-	char **artokenm = NULL;
 	size_t n = 0;
 	ssize_t num_line;/*return size of bytes or -1*/
 	int token_count = 0;
 	char *token;
 	int i;
+		(void)argc;
 		while (1)
 		{
 			if (isatty(STDIN_FILENO))
@@ -33,17 +33,24 @@ int main(void)
 			}
 			_strcpy(copy_line, read_line);/*copy string*/
 			token = strtok(read_line, " \n\t");
-			artoken = malloc(sizeof(char *) *token_count);
 			while (token != NULL)
 			{
-				artoken[i] = token;
+				token_count++;
 				token = strtok(NULL, " \n\t");
-				i++;
 			}
 			token_count++;
-		artoken = NULL;
-		execute(read_line, artoken);
-		free(read_line);
+			argv = malloc(sizeof(char *) * token_count);
+			token = strtok(copy_line, " \n\t");
+			for (i = 0; token != NULL; i++)
+			{
+				argv[i] = malloc(sizeof(char) * _strlen(token));
+				_strcpy(argv[i], token);
+				token = strtok(NULL, " \n\t");
+			}
+			argv[i] = NULL;
+			execute(read_line, argv);
 		}
+		free(copy_line);
+		free(read_line);
 		return (0);
 }

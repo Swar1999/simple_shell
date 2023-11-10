@@ -5,48 +5,45 @@
  * @argv: arguments vector
  * Return: always 0 success
  */
-int main(int argc, char *argv[])
+int main(void)
 {
 	char *prompt = "$ ";/*creat new prompt */
-	char *read_line = NULL, *copy_line = NULL/*getline function paramter*/
+	char *read_line = NULL, *copy_line = NULL;/*getline function paramter*/
+	char **artokenm = NULL;
 	size_t n = 0;
 	ssize_t num_line;/*return size of bytes or -1*/
 	int token_count = 0;
 	char *token;
 	int i;
-		(void)argc;/*ignor the paramter argc*/
-		while(1)
+		while (1)
 		{
-			if (isatty(STDIN_FILENO));
-			printf("%s", prompt);
-			num_line = getline(&read_line, &n, stdin);/*read the entier stream of string*/
+			if (isatty(STDIN_FILENO))
+				printf("%s", prompt);
+			num_line = getline(&read_line, &n, stdin);
 			if (num_line == -1)
 			{
 				printf("\n");/*print a new line*/
 				break;/*end*/
 			}
-			/*use malloc to reseve a sapace for read_line copy*/
 			copy_line = malloc(sizeof(char) * num_line);
-			if (copy_line == -1)
+			if (copy_line == NULL)
 			{
 				perror("memory allocation faild");
 				return (-1);
 			}
 			_strcpy(copy_line, read_line);/*copy string*/
-			/*spreate the string commneds*/
 			token = strtok(read_line, " \n\t");
-			/*save each token in liked list*/
-			Node *head = NULL;/*creat a linked list*/
+			artoken = malloc(sizeof(char *) *token_count);
 			while (token != NULL)
 			{
-				appnode(&head, token);/*appand new node to the list*/
+				artoken[i] = token;
 				token = strtok(NULL, " \n\t");
+				i++;
 			}
-			/*need exsit condion*/
-			execute(read_line, Node);/*how to send a linked list?*/
-			free(linkedlist);/*frist free the list*/
-			free(read_line);
-
+			token_count++;
+		artoken = NULL;
+		execute(read_line, artoken);
+		free(read_line);
 		}
 		return (0);
 }

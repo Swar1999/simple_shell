@@ -25,25 +25,28 @@ int main(int argc, char *argv[])
 				printf("\n");/*print a new line*/
 				break;/*end*/
 			}
+			/*use malloc to reseve a sapace for read_line copy*/
 			copy_line = malloc(sizeof(char) * num_line);
-			if (copy_line == NULL)/*malloc faild*/
+			if (copy_line == -1)
 			{
-				perror("memory allocation failed");
-				return(-1);
+				perror("memory allocation faild");
+				return (-1);
 			}
-			_strcyp(copy_line, read_line);/*save copy before break into tokens*/
-			token = strtok(read_line, " \n\t");/*read string and spreated with dlimiter*/
+			_strcpy(copy_line, read_line);/*copy string*/
+			/*spreate the string commneds*/
+			token = strtok(read_line, " \n\t");
+			/*save each token in liked list*/
+			Node *head = NULL;/*creat a linked list*/
 			while (token != NULL)
 			{
-				token_count++;
+				appnode(&head, token);/*appand new node to the list*/
 				token = strtok(NULL, " \n\t");
 			}
-			token_count++;
-			argv = malloc(sizeof(char *) *token_count);
-			token = strtok(copy_line, " \n\t");/*store each token*/
-
-			printf("%s\n", read_line);
+			/*need exsit condion*/
+			execute(read_line, Node);/*how to send a linked list?*/
+			free(linkedlist);/*frist free the list*/
 			free(read_line);
+
 		}
 		return (0);
 }

@@ -23,7 +23,7 @@ int main(int argc, char **argv)
 			if (num_line == -1)
 			{
 				printf("\n");/*print a new line*/
-				break;/*end*/
+				return(-1);
 			}
 			copy_line = malloc(sizeof(char) * num_line);
 			if (copy_line == NULL)

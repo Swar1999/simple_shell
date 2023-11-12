@@ -1,46 +1,5 @@
 #include "main.h"
 /**
- * _strncpy - Entry point
- * Description: program that copy sstrings
- * @dest: pointer
- * @src: pointer
- * @n: counter
- * Return: void
- */
-char *_strncpy(char *dest, char *src, int n)
-{
-	int j;
-		j = 0;
-		while (j < n && src[j] != '\0')
-		{
-			dest[j] = src[j];
-			j++;
-		}
-		while (j < n)
-		{
-			dest[j] = '\0';
-			j++;
-		}
-		return (dest);
-}
-/**
- * *_strcpy - function to copy string
- * @dest : pointer to string 2
- * @src : pointer to string 1
- * Return: adress of dest
- */
-char *_strcpy(char *dest, char *src)
-{
-	int i = 0;
-		while (src[i] != '\0')
-		{
-			dest[i] = src[i];
-			i++;
-		}
-		dest[i] = '\0';
-		return (dest);
-}
-/**
  * _strlen - Entry point
  * Description: program that print the string length
  * @s: pointer
@@ -55,4 +14,40 @@ int _strlen(char *s)
 			s++;
 		}
 		return (len);
+}
+/**
+ * _memcpy - Entry point
+ * Description: program that copies memory area
+ * @dest: pointer to area 2
+ * @src: pointer to area 1
+ * @n: number of bytes
+ * Return: dest
+ */
+char *_memcpy(char *dest, char *src, unsigned int n)
+{
+	int i = 0;
+	int j = n;
+		for (; i < j; i++)
+		{
+			dest[i] = src[i];
+			n--;
+		}
+		return (dest);
+}
+/**
+ * _strdup - function that duplicates string
+ * @str : string to be coped
+ * Return: new copyed string
+ */
+char *_strdup(const char *str)
+{
+	size_t len;
+	char *dstr;/*duplicated str*/
+		len = _strlen(str) + 1;
+		dstr = malloc(sizeof(str));/*allocate memory space*/
+		if (dstr != NULL)
+		{
+			_memcpy(dstr, str, len);
+		}
+		return (dstr);
 }

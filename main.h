@@ -5,9 +5,10 @@
 #include <string.h>
 #include <unistd.h>
 #include <sys/wait.h>
-/* Functions */
-char *_strncpy(char *dest, char *src, int n);
-char *_strcpy(char *dest, char *src);
+/* string Functions */
 int _strlen(char *s);
+char *_strdup( char *str);
+char *_memcpy(char *dest, char *src, unsigned int n);
+/*command execute function*/
 void execute(char *read_line, char **argv);
 #endif

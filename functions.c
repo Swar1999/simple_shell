@@ -39,7 +39,7 @@ char *_memcpy(char *dest, char *src, unsigned int n)
  * @str : string to be coped
  * Return: new copyed string
  */
-char *_strdup(const char *str)
+char *_strdup( char *str)
 {
 	size_t len;
 	char *dstr;/*duplicated str*/

@@ -9,11 +9,18 @@ void execute(char *read_line, char **argv)
 {
 	pid_t id;/*id of process*/
 		id = fork();/*call the process again*/
-		if(execve(read_line, argv, NULL) == -1)
-			perror("error command not found");
-		if (id == 0)
+		if (id == -1)
 		{
-			execve(read_line, argv, NULL);/*search for path name*/
+			perror("fork error");
+			exit(1);
+		}
+		else if (id == 0)
+		{
+			if (execve(read_line, argv, NULL) == -1)
+			{
+				perror("error command not found");
+				exit(1);
+			}
 		}
 		else
 		{

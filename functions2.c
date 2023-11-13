@@ -51,15 +51,22 @@ char *_strcpy(char *dest, char *src)
 char *_getenv(char *env_name)
 {
         extern char **environ;/*declare the global variable*/
-        int i;
-        char *sign;/*character to search for*/
+        int i = 0;
                 while (environ[i] != NULL)
                 {
-                        if (_strncmp(environ[i], env_name, _strlen(env_name) == 0))
-                                sign = _strchr(environ[i], '=');/*search for = sign*/
-                        if (sign != NULL)
-                                return (sign + 1);
-                }
-                perror("No such a file or directory");
+			char *var = environ[i];
+			char *value = strchr(var, '=');
+				if (value != NULL)
+				{
+					*value = '\0';
+					if (strcmp(var, env_name) == 0)
+					{
+						*value = '=';
+						return (value + 1);
+					}
+					*value = '=';
+				}
+				i++;
+		}
                 return (NULL);
 }

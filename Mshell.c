@@ -32,7 +32,7 @@ int main(int argc, char **argv)
 				i++;
 			}
 			argv[i] = NULL;
-			execute(read_line, argv);
+			execute(argv);
 		}
 		free(read_line);
 		return (0);

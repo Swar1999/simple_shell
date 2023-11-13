@@ -6,11 +6,10 @@ char *get_path(char *command);
  * @argv : array
  * Return: nothing
  */
-void execute(char *read_line, char **argv)
+void execute(char **argv)
 {
 	pid_t id;
 	char *cmd, *real_cmd;
-		(void)read_line;
 		id = fork();
 		cmd = argv[0];/*get the command*/
 		if (id == -1)
@@ -21,7 +20,7 @@ void execute(char *read_line, char **argv)
 		else if (id == 0)
 		{
 			real_cmd = get_path(cmd);
-			if (execve(real_cmd, argv, NULL) != -1)
+			if (execve(real_cmd, argv, environ) == -1)
 			{
 				perror("execve error");
 				free(real_cmd);

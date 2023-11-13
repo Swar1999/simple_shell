@@ -53,20 +53,19 @@ char *_strdup( char *str)
 }
 /**
  * _strchr - function that search for sepcific character in a string
- * @str : string 
- * @s : character to be searched
+ * @s : string 
+ * @c : character to be searched
  * Return : address of s
  */
-char *_strchr(char *str, char s)
+char *_strchr(char *s, char c)
 {
-	int i = 0;
-		while (str[i] != '\0')
-		{
-			if (str[i] == s)
-				return (&str[i]);
-			i++;
-		}
-		return (NULL);
+        int i = 0;
+                for (; s[i] >= '\0'; i++)
+                {
+                        if (s[i] == c)
+                                return (&s[i]);
+                }
+                return (0);
 }
 /**
  * _strcmp - Entry point

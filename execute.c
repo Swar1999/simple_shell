@@ -8,8 +8,6 @@
 void execute(char *read_line, char **argv)
 {
 	pid_t id;/*id of process*/
-	char *path;/*path to search for*/
-	char *directory;
 		id = fork();/*call the process again*/
 		if (id == -1)
 		{
@@ -18,8 +16,6 @@ void execute(char *read_line, char **argv)
 		}
 		else if (id == 0)
 		{
-			path = _getenv("PATH");/*search for word PATH*/
-			directory = strtok(path, ":");/*delimiter :*/
 			if (execve(read_line, argv, NULL) == -1)
 			{
 				perror("error command not found");

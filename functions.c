@@ -51,3 +51,43 @@ char *_strdup( char *str)
 		}
 		return (dstr);
 }
+/**
+ * _strchr - function that search for sepcific character in a string
+ * @str : string 
+ * @s : character to be searched
+ * Return : address of s
+ */
+char *_strchr(char *str, char s)
+{
+	int i = 0;
+		while (str[i] != '\0')
+		{
+			if (str[i] == s)
+				return (&str[i]);
+			i++;
+		}
+		return (NULL);
+}
+/**
+ * _strcmp - Entry point
+ * Description: program that compare two strings
+ * @s1: pointer
+ * @s2: pointer
+ * @n : length of string
+ * Return: Always 0 (Success)
+ */
+int _strncmp(char *s1, char *s2, int n)
+{
+	int i = 0;
+		while ((s1[i] != '\0' || s2[i] != '\0')&& i < n)
+		{
+			if (s1[i] != s2[i])
+                        {
+                                return (s1[i] - s2[i]);
+                        }
+                        i++;
+                }
+		if (i == n || (s1[i] == '\0' && s2[i] == '\0'))
+		       	return (0);
+		return (s1[i] - s2[i]);
+}

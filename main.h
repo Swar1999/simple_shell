@@ -18,4 +18,5 @@ char *_strcat(char *dest, char *src);
 /*command execute function*/
 void execute(char *read_line, char **argv);
 char *_getenv(char *env_name);
+char *get_path(char *command);
 #endif

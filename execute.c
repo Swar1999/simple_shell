@@ -1,4 +1,5 @@
 #include "main.h"
+char *get_path(char *command);
 /**
  * execute - function to search for path of a command
  * @read_line : string
@@ -7,8 +8,11 @@
  */
 void execute(char *read_line, char **argv)
 {
-	pid_t id;/*id of process*/
-		id = fork();/*call the process again*/
+	pid_t id;
+	char *cmd, *real_cmd;
+		(void)read_line;
+		id = fork();
+		cmd = argv[0];/*get the command*/
 		if (id == -1)
 		{
 			perror("fork error");
@@ -16,14 +20,14 @@ void execute(char *read_line, char **argv)
 		}
 		else if (id == 0)
 		{
-			if (execve(read_line, argv, NULL) == -1)
+			real_cmd = get_path(cmd);
+			if (execve(real_cmd, argv, NULL) != -1)
 			{
-				perror("error command not found");
+				perror("execve error");
+				free(real_cmd);
 				exit(1);
 			}
+			free(real_cmd);
 		}
-		else
-		{
-			wait(NULL);/*wait for proccess complition*/
-		}
+			wait(NULL);
 }

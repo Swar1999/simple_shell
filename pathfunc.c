@@ -27,11 +27,11 @@ char *get_path(char *command)
 				if (stat(fpath, &buffer) == 0)/*command not found*/
 				{
 					free(cpath);
+					free(fpath);
 					return (fpath);
 				}
 				else
 				{
-					free(fpath);
 					tpath = strtok(NULL, ":");/*move to next*/
 				}
 			}

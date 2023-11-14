@@ -31,7 +31,7 @@ void execute(char **argv)
 					else
 					{
 						waitpid(c_id, &status, 0);
-						if (WIFEXTID(status))
+						if (WIFEXITED(status))
 						{
 							printf("child%d\n",WEXITSTATUS(status));
 						}

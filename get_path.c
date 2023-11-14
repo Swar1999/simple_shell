@@ -12,10 +12,9 @@ char *get_path(char *cmd)
 {
 	char *path, *cpath, *tpath, *fpath;/*path copy,path token,path file*/
 	int cmd_len, dir_len;
-	struct stat buff;
 		path = _getenv("PATH");/*function to get the enviromental var*/
 		if (!path)
-			return (-1);
+			return ("");
 		cpath = _strdup(path);/*create a duplicate of path*/
 		cmd_len = _strlen(cmd);
 		tpath = strtok(cpath, ":");

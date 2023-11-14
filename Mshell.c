@@ -13,7 +13,7 @@ int main(int argc, char **argv)
 	ssize_t num_line;/*return size of bytes or -1*/
 	char *token;
 	int num_tokens = 0;
-	int i;
+	int i, j;
 		(void)argc;
 		while (1)
 		{
@@ -42,8 +42,8 @@ int main(int argc, char **argv)
 			if (argv == NULL)
 			{
 				perror("memory error");
-				free(copy_line)
-					return (-1);
+				free(copy_line);
+				return (-1);
 			}
 			token = strtok(read_line, " \n\t");
 			for (i = 0; token != NULL; i++)
@@ -61,7 +61,7 @@ int main(int argc, char **argv)
 			}
 			argv[i] = NULL;
 			execute(argv);
-			for (int j = 0; j < i; j++)
+			for ( j = 0; j < i; j++)
 			{
 				free(argv[j]);
 			}

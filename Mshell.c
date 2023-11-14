@@ -1,4 +1,6 @@
 #include "main.h"
+char *_strcpy(char *dest, char *src);
+void execute(char **argv);
 /**
  * main - entry point
  * @argc: argument counter
@@ -7,10 +9,11 @@
  */
 int main(int argc, char **argv)
 {
-	char *read_line = NULL;/*script line*/
+	char *read_line = NULL, *copy_line = NULL;/*script line*/
 	size_t n = 0;
 	ssize_t num_line;/*return size of bytes or -1*/
 	char *token;
+	int num_tokens = 0;
 	int i;
 		(void)argc;
 		while (1)
@@ -23,17 +26,32 @@ int main(int argc, char **argv)
 				printf("\n");/*print a new line*/
 				return(-1);
 			}
-			token = strtok(read_line, " \n\t");
-			i = 0;
+			copy_line = malloc(sizeof(char) * num_line);
+        		if (copy_line == NULL)
+			{
+				perror("memory allocation error");
+				return (-1);
+			}
+			_strcpy(copy_line, read_line);
+        		token = strtok(read_line, " \n\t");
 			while (token != NULL)
 			{
-				argv[i] = _strdup(token);/*copy token script*/
+           			num_tokens++;
+            			token = strtok(NULL, " \n\t");
+			}
+			num_tokens++;
+			argv = malloc(sizeof(char *) * num_tokens);
+			token = strtok(copy_line, " \n\t");
+			for (i = 0; token != NULL; i++)
+			{
+				argv[i] = malloc(sizeof(char) * strlen(token));
+				_strcpy(argv[i], token);
 				token = strtok(NULL, " \n\t");
-				i++;
 			}
 			argv[i] = NULL;
 			execute(argv);
 		}
+		free(copy_line);
 		free(read_line);
 		return (0);
 }

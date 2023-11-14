@@ -22,7 +22,7 @@ int _strlen(char *s)
  * @src: pointer to area 1
  * @n: number of bytes
  * Return: dest
- */
+ * */
 char *_memcpy(char *dest, char *src, unsigned int n)
 {
 	int i = 0;
@@ -56,7 +56,6 @@ char *_strdup( char *str)
  * @s : string 
  * @c : character to be searched
  * Return : address of s
- */
 char *_strchr(char *s, char c)
 {
         int i = 0;
@@ -66,14 +65,13 @@ char *_strchr(char *s, char c)
                                 return (&s[i]);
                 }
                 return (0);
-}
+}*/
 /**
  * _strcmp - Entry point
  * Description: program that compare two strings
  * @s1: pointer
  * @s2: pointer
  * Return: Always 0 (Success)
- */
 int _strcmp(char *s1, char *s2)
 {
         int i;
@@ -87,4 +85,4 @@ int _strcmp(char *s1, char *s2)
                         i++;
                 }
                 return (0);
-}
+}*/

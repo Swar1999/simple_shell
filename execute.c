@@ -1,32 +1,17 @@
 #include "main.h"
-char *get_path(char *command);
-/**
- * execute - function to search for path of a command
- * @read_line : string
- * @argv : array
- * Return: nothing
+/** execute - function to execute commands
+ * @argv : array of commands
+ * Return : nothing
  */
 void execute(char **argv)
 {
-	pid_t id;
-	char *cmd, *real_cmd;
-		id = fork();
-		cmd = argv[0];/*get the command*/
-		if (id == -1)
+	char *command = NULL;
+		if (argv)
 		{
-			perror("fork error");
-			exit(1);
-		}
-		else if (id == 0)
-		{
-			real_cmd = get_path(cmd);
-			if (execve(real_cmd, argv, environ) == -1)
+			command = argv[0];
+			if (execve(command, argv, NULL) == -1)
 			{
-				perror("execve error");
-				free(real_cmd);
-				exit(1);
+				perror("Error");
 			}
-			free(real_cmd);
 		}
-			wait(NULL);
 }

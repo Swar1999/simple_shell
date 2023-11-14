@@ -72,21 +72,19 @@ char *_strchr(char *s, char c)
  * Description: program that compare two strings
  * @s1: pointer
  * @s2: pointer
- * @n : length of string
  * Return: Always 0 (Success)
  */
-int _strncmp(char *s1, char *s2, int n)
+int _strcmp(char *s1, char *s2)
 {
-	int i = 0;
-		while ((s1[i] != '\0' || s2[i] != '\0')&& i < n)
-		{
-			if (s1[i] != s2[i])
+        int i;
+                i = 0;
+                while (s1[i] != '\0' && s2[i] != '\0')
+                {
+                        if (s1[i] != s2[i])
                         {
                                 return (s1[i] - s2[i]);
                         }
                         i++;
                 }
-		if (i == n || (s1[i] == '\0' && s2[i] == '\0'))
-		       	return (0);
-		return (s1[i] - s2[i]);
+                return (0);
 }

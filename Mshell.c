@@ -15,7 +15,7 @@ int main(int argc, char **argv)
 		(void)argc;
 		while (1)
 		{
-			if (isatty(STDIN_FILENO))
+			if (isatty(STDIN_FILENO))/*check if input with terminal*/
 				printf("$ ");
 			num_line = getline(&read_line, &n, stdin);
 			if (num_line == -1)

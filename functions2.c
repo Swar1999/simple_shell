@@ -42,31 +42,3 @@ char *_strcpy(char *dest, char *src)
 		dest[i] = '\0';
 		return (dest);
 }
-#include "main.h"
-/**
- * _getenv - function that search for enviroment vars
- * @name : string to be searched
- * Return : the value of the enviroment var or null
- */
-char *_getenv(char *env_name)
-{
-        extern char **environ;/*declare the global variable*/
-        int i = 0;
-                while (environ[i] != NULL)
-                {
-			char *var = environ[i];
-			char *value = strchr(var, '=');
-				if (value != NULL)
-				{
-					*value = '\0';
-					if (strcmp(var, env_name) == 0)
-					{
-						*value = '=';
-						return (value + 1);
-					}
-					*value = '=';
-				}
-				i++;
-		}
-                return (NULL);
-}

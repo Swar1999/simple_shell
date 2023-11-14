@@ -1,5 +1,4 @@
 #include "main.h"
-char *_strcpy(char *dest, char *src);
 void execute(char **argv);
 /**
  * main - entry point
@@ -33,23 +32,40 @@ int main(int argc, char **argv)
 				return (-1);
 			}
 			_strcpy(copy_line, read_line);
-        		token = strtok(read_line, " \n\t");
+        		token = strtok(copy_line, " \n\t");
 			while (token != NULL)
 			{
            			num_tokens++;
             			token = strtok(NULL, " \n\t");
 			}
-			num_tokens++;
-			argv = malloc(sizeof(char *) * num_tokens);
-			token = strtok(copy_line, " \n\t");
+			argv = malloc(sizeof(char *) * (num_tokens + 1));
+			if (argv == NULL)
+			{
+				perror("memory error");
+				free(copy_line)
+					return (-1);
+			}
+			token = strtok(read_line, " \n\t");
 			for (i = 0; token != NULL; i++)
 			{
-				argv[i] = malloc(sizeof(char) * strlen(token));
+				argv[i] = malloc(sizeof(char) * (strlen(token) + 1));
+				if (argv[i] == NULL)
+				{
+					perror("memory error");
+					free(copy_line);
+					free(argv);
+					return (-1);
+				}
 				_strcpy(argv[i], token);
 				token = strtok(NULL, " \n\t");
 			}
 			argv[i] = NULL;
 			execute(argv);
+			for (int j = 0; j < i; j++)
+			{
+				free(argv[j]);
+			}
+			free(argv);
 		}
 		free(copy_line);
 		free(read_line);

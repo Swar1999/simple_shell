@@ -22,7 +22,7 @@ int main(int argc, char **argv)
 			num_line = getline(&read_line, &n, stdin);
 			if (num_line == -1)
 			{
-				printf("\n");/*print a new line*/
+				/*printf("\n")print a new line*/
 				free(read_line);
 				return (-1);
 			}

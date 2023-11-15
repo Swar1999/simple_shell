@@ -24,21 +24,21 @@ int main(int argc, char **argv)
 			{
 				printf("\n");/*print a new line*/
 				free(read_line);
-				return(-1);
+				return (-1);
 			}
 			copy_line = malloc(sizeof(char) * num_line);
-        		if (copy_line == NULL)
+			if (copy_line == NULL)
 			{
 				perror("memory allocation error");
 				free(read_line);
 				return (-1);
 			}
 			_strcpy(copy_line, read_line);
-        		token = strtok(copy_line, " \n\t");
+			token = strtok(copy_line, " \n\t");
 			while (token != NULL)
 			{
-           			num_tokens++;
-            			token = strtok(NULL, " \n\t");
+				num_tokens++;
+				token = strtok(NULL, " \n\t");
 			}
 			argv = malloc(sizeof(char *) * (num_tokens + 1));
 			if (argv == NULL)
@@ -65,7 +65,7 @@ int main(int argc, char **argv)
 			}
 			argv[i] = NULL;
 			execute(argv);
-			for ( j = 0; j < i; j++)
+			for (j = 0; j < i; j++)
 			{
 				free(argv[j]);
 			}

@@ -1,5 +1,4 @@
 #include "main.h"
-extern char **environ;
 /**
  * _getenv - function to get the enviroment
  * @name: command name

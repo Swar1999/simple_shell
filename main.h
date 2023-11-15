@@ -6,9 +6,9 @@
 #include <unistd.h>
 #include <sys/wait.h>
 #include <sys/types.h>
-/* string Functions*/ 
+/*string Functions*/
 int _strlen(char *s);
-char *_strdup( char *str);
+char *_strdup(char *str);
 char *_memcpy(char *dest, char *src, unsigned int n);
 char *_strcpy(char *dest, char *src);
 char *_strcat(char *dest, char *src);

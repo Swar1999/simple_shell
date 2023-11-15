@@ -1,6 +1,7 @@
 #include "main.h"
 char *get_path(char *command);
-/** execute - function to execute commands
+/**
+ * execute - function to execute commands
  * @argv : array of commands
  * Return : nothing
  */
@@ -13,9 +14,9 @@ void execute(char **argv)
 		{
 			command = argv[0];
 			real = get_path(command);
-			if (real && *real != '\0')/*get_path return cmd*/
+			if (real && *real != '\0') /*get_path return cmd*/
 			{
-				 c_id = fork();/* child process id*/
+				c_id = fork();/* child process id*/
 				if (c_id == -1)
 				{
 					perror("fork error");
@@ -28,19 +29,19 @@ void execute(char **argv)
 						exit(126);
 					}
 				}
-					else
-					{
-						waitpid(c_id, &status, 0);
-						if (WIFEXITED(status))
-						{
-							printf("child%d\n",WEXITSTATUS(status));
-						}
-					}
-				}
 				else
 				{
-					printf("%s", command);
+					waitpid(c_id, &status, 0);
+					if (WIFEXITED(status))
+					{
+						printf("child%d\n", WEXITSTATUS(status));
+					}
 				}
-				free(real);
+				}
+			else
+			{
+				printf("%s", command);
 			}
+			free(real);
+		}
 }

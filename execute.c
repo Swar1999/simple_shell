@@ -32,16 +32,18 @@ void execute(char **argv)
 				else
 				{
 					waitpid(c_id, &status, 0);
-					if (WIFEXITED(status))
+					/*if (WIFEXITED(status))
 					{
 						printf("child%d\n", WEXITSTATUS(status));
-					}
+					}*/
 				}
 				}
 			else
 			{
-				printf("%s", command);
+				fprintf(stderr, "command not found: %s\n", command);
 			}
 			free(real);
 		}
+		if (real != NULL)
+			free(real);
 }

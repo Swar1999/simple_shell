@@ -24,6 +24,7 @@ char *get_path(char *cmd)
 				fpath = malloc(cmd_len + dir_len + 2);
 				if (fpath == NULL)
 				{
+					free(cpath);
 					return ("");
 				}
 				_strcpy(fpath, tpath);
@@ -32,13 +33,16 @@ char *get_path(char *cmd)
 				if (access(fpath, X_OK) == 0)
 				{
 					free(cpath);
-					return fpath;
+					return (fpath);
 				}
 				free(fpath);
 				tpath = strtok(NULL, ":");
 			}
 			free(cpath);
 			if (access(cmd, X_OK) == 0)
+			{
+				free(fpath);
 				return (cmd);
+			}
 			return ("");
 }

@@ -25,12 +25,10 @@ int _strlen(char *s)
  * */
 char *_memcpy(char *dest, char *src, unsigned int n)
 {
-	int i = 0;
-	int j = n;
-		for (; i < j; i++)
+	unsigned int i;
+		for (i = 0; i < n; i++)
 		{
 			dest[i] = src[i];
-			n--;
 		}
 		return (dest);
 }
@@ -44,7 +42,7 @@ char *_strdup( char *str)
 	size_t len;
 	char *dstr;/*duplicated str*/
 		len = _strlen(str) + 1;
-		dstr = malloc(sizeof(str));/*allocate memory space*/
+		dstr = malloc(len);/*allocate memory space*/
 		if (dstr != NULL)
 		{
 			_memcpy(dstr, str, len);
@@ -52,37 +50,45 @@ char *_strdup( char *str)
 		return (dstr);
 }
 /**
- * _strchr - function that search for sepcific character in a string
- * @s : string 
- * @c : character to be searched
- * Return : address of s
-char *_strchr(char *s, char c)
+ * *_strcpy - function to copy string
+ * @dest : pointer to string 2
+ * @src : pointer to string 1
+ * Return: adress of dest
+ */
+char *_strcpy(char *dest, char *src)
 {
         int i = 0;
-                for (; s[i] >= '\0'; i++)
+                while (src[i] != '\0')
                 {
-                        if (s[i] == c)
-                                return (&s[i]);
-                }
-                return (0);
-}*/
-/**
- * _strcmp - Entry point
- * Description: program that compare two strings
- * @s1: pointer
- * @s2: pointer
- * Return: Always 0 (Success)
-int _strcmp(char *s1, char *s2)
-{
-        int i;
-                i = 0;
-                while (s1[i] != '\0' && s2[i] != '\0')
-                {
-                        if (s1[i] != s2[i])
-                        {
-                                return (s1[i] - s2[i]);
-                        }
+                        dest[i] = src[i];
                         i++;
                 }
-                return (0);
-}*/
+                dest[i] = '\0';
+                return (dest);
+}
+/**
+ * _strcat - Entry point
+ * Description: program that prints two strings
+ * @dest: pointer
+ * @src: pointer
+ * Return: dest
+ */
+char *_strcat(char *dest, char *src)
+{
+        int i;
+        int j;
+                i = 0;
+                while (dest[i] != '\0')
+                {
+                        i++;
+                }
+                j = 0;
+                while (src[j] != '\0')
+                {
+                        dest[i] = src[j];
+                        i++;
+                        j++;
+                }
+                dest[i] = '\0';
+                return (dest);
+}

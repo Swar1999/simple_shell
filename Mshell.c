@@ -23,12 +23,14 @@ int main(int argc, char **argv)
 			if (num_line == -1)
 			{
 				printf("\n");/*print a new line*/
+				free(read_line);
 				return(-1);
 			}
 			copy_line = malloc(sizeof(char) * num_line);
         		if (copy_line == NULL)
 			{
 				perror("memory allocation error");
+				free(read_line);
 				return (-1);
 			}
 			_strcpy(copy_line, read_line);
@@ -43,17 +45,19 @@ int main(int argc, char **argv)
 			{
 				perror("memory error");
 				free(copy_line);
+				free(read_line);
 				return (-1);
 			}
 			token = strtok(read_line, " \n\t");
 			for (i = 0; token != NULL; i++)
 			{
-				argv[i] = malloc(sizeof(char) * (strlen(token) + 1));
+				argv[i] = malloc(sizeof(char) * (_strlen(token) + 1));
 				if (argv[i] == NULL)
 				{
 					perror("memory error");
 					free(copy_line);
 					free(argv);
+					free(read_line);
 					return (-1);
 				}
 				_strcpy(argv[i], token);
@@ -66,8 +70,8 @@ int main(int argc, char **argv)
 				free(argv[j]);
 			}
 			free(argv);
+			free(copy_line);
 		}
-		free(copy_line);
 		free(read_line);
 		return (0);
 }

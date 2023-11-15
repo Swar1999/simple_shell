@@ -43,7 +43,7 @@ void execute(char **argv)
 			}
 			else
 			{
-				fprintf(stderr, "command not found\n");
+				printf("No such a file or directory\n");
 				exit(EXIT_FAILURE);
 			}
 		}

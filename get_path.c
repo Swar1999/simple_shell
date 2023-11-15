@@ -14,7 +14,7 @@ char *get_path(char *cmd)
 	int cmd_len, dir_len;
 		path = _getenv("PATH");/*function to get the enviromental var*/
 		if (!path)
-			return ("");
+			return (NULL);
 		cpath = _strdup(path);/*create a duplicate of path*/
 		cmd_len = _strlen(cmd);
 		tpath = strtok(cpath, ":");
@@ -25,7 +25,7 @@ char *get_path(char *cmd)
 				if (fpath == NULL)
 				{
 					free(cpath);
-					return ("");
+					return (NULL);
 				}
 				_strcpy(fpath, tpath);
 				_strcat(fpath, "/");
@@ -41,8 +41,7 @@ char *get_path(char *cmd)
 			free(cpath);
 			if (access(cmd, X_OK) == 0)
 			{
-				free(fpath);
-				return (cmd);
+				return (_strdup(cmd));
 			}
-			return ("");
+			return (NULL);
 }

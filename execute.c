@@ -44,6 +44,4 @@ void execute(char **argv)
 			}
 			free(real);
 		}
-		if (real != NULL)
-			free(real);
 }

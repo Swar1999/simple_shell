@@ -43,5 +43,5 @@ char *get_path(char *cmd)
 			{
 				return (_strdup(cmd));
 			}
-			return (NULL);
+			return(NULL);
 }

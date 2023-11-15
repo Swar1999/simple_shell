@@ -20,28 +20,31 @@ void execute(char **argv)
 				if (c_id == -1)
 				{
 					perror("fork error");
+					exit(EXIT_FAILURE);
 				}
 				else if (c_id == 0)/*child process created*/
 				{
 					if (execve(real, argv, environ) == -1)
 					{
 						perror("Error");
-						exit(126);
+						printf("No such a file or Directory\n");
+						exit(EXIT_FAILURE);
+					}
+					else
+					{
+						exit(0);
 					}
 				}
 				else
 				{
 					waitpid(c_id, &status, 0);
-					/*if (WIFEXITED(status))
-					{
-						printf("child%d\n", WEXITSTATUS(status));
-					}*/
 				}
-				}
+				free(real);
+			}
 			else
 			{
-				fprintf(stderr, "command not found: %s\n", command);
+				fprintf(stderr, "command not found\n");
+				exit(EXIT_FAILURE);
 			}
-			free(real);
 		}
 }

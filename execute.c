@@ -23,7 +23,7 @@ void execute(char **argv)
 				}
 				else if (c_id == 0)/*child process created*/
 				{
-					if (execve(real, argv, NULL) == -1)
+					if (execve(real, argv, environ) == -1)
 					{
 						perror("Error");
 						exit(126);

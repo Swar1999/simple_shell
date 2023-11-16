@@ -1,9 +1,9 @@
 #include "main.h"
 /**
  * _env - function to print enviroment
- * Return : nothing
+ * Return: current enviroment
  */
-char * _env(void)
+char *_env(void)
 {
 	char **current_env = environ;/*equal arrays*/
 		while (*current_env)

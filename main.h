@@ -6,6 +6,8 @@
 #include <unistd.h>
 #include <sys/wait.h>
 #include <sys/types.h>
+/*global variable*/
+extern char **environ;
 /*string Functions*/
 int _strlen(char *s);
 char *_strdup(char *str);
@@ -16,6 +18,4 @@ char *_strcat(char *dest, char *src);
 void execute(char **argv);
 char *get_path(char *command);
 char *_getenv(const char *name);
-/*global variable*/
-extern char **environ;
 #endif

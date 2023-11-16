@@ -43,7 +43,7 @@ void execute(char **argv)
 			}
 			else
 			{
-				printf("No such a file or directory\n");
+				printf("./hsh: No such a file or directory\n");
 				exit(EXIT_FAILURE);
 			}
 		}
